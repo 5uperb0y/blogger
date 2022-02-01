@@ -21,7 +21,7 @@ URL:      https://summer-inequality.blogspot.com/
 
    <Group description="Page Text" selector="body">
      <Variable name="body.font" description="Font" type="font"
-         default="normal normal 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="normal normal 12px &#39;Trebuchet MS&#39;, Trebuchet, Verdana, sans-serif"/>
+         default="normal normal 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="normal normal 14px &#39;NOTO SANS TC, Trebuchet MS&#39;, Trebuchet, Verdana, sans-serif"/>
      <Variable name="body.text.color" description="Text Color" type="color" default="#222222" value="#666666"/>
    </Group>
 
@@ -32,20 +32,20 @@ URL:      https://summer-inequality.blogspot.com/
    </Group>
 
    <Group description="Links" selector=".main-outer">
-     <Variable name="link.color" description="Link Color" type="color" default="#2288bb" value="#2288bb"/>
-     <Variable name="link.visited.color" description="Visited Color" type="color" default="#888888" value="#888888"/>
-     <Variable name="link.hover.color" description="Hover Color" type="color" default="#33aaff" value="#33aaff"/>
+     <Variable name="link.color" description="Link Color" type="color" default="#2288bb" value="#9b9b9b"/>
+     <Variable name="link.visited.color" description="Visited Color" type="color" default="#888888" value="#9b9b9b"/>
+     <Variable name="link.hover.color" description="Hover Color" type="color" default="#33aaff" value="#0084c0"/>
    </Group>
 
    <Group description="Blog Title" selector=".header h1">
      <Variable name="header.font" description="Font" type="font"
-         default="normal normal 60px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="normal normal 40px &#39;Trebuchet MS&#39;,Trebuchet,Verdana,sans-serif"/>
-     <Variable name="header.text.color" description="Title Color" type="color" default="#3399bb"  value="#000000"/>
+         default="normal normal 60px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="bold normal 36px &#39; NOTO SANS TC, Trebuchet MS&#39;,Trebuchet,Verdana,sans-serif"/>
+     <Variable name="header.text.color" description="Title Color" type="color" default="#3399bb"  value="#343434"/>
    </Group>
 
    <Group description="Blog Description" selector=".header .description">
      <Variable name="description.text.color" description="Description Color" type="color"
-         default="#777777"  value="#000000"/>
+         default="#777777"  value="#9b9b9b"/>
    </Group>
 
    <Group description="Tabs Text" selector=".tabs-inner .widget li a">
@@ -62,7 +62,7 @@ URL:      https://summer-inequality.blogspot.com/
 
    <Group description="Post Title" selector="h3.post-title, .comments h4">
      <Variable name="post.title.font" description="Font" type="font"
-         default="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="normal normal 22px &#39;Trebuchet MS&#39;,Trebuchet,Verdana,sans-serif"/>
+         default="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="normal normal 22px &#39;NOTO SANS TC, Trebuchet MS&#39;,Trebuchet,Verdana,sans-serif"/>
    </Group>
 
    <Group description="Date Header" selector=".date-header">
@@ -130,7 +130,7 @@ URL:      https://summer-inequality.blogspot.com/
    <Variable name="header.bottom.border.size" description="Header Bottom Border Size" type="length" default="$(header.border.size)" min="0" max="10px" value="0"/>
    <Variable name="header.border.horizontalsize" description="Header Horizontal Border Size" type="length" default="0" min="0" max="10px" value="1px"/>
 
-   <Variable name="description.text.size" description="Description Text Size" type="string" default="140%" value="18px"/>
+   <Variable name="description.text.size" description="Description Text Size" type="string" default="140%" value="16px"/>
 
    <Variable name="tabs.margin.top" description="Tabs Margin Top" type="length" default="0" min="0" max="100px" value="0"/>
    <Variable name="tabs.margin.side" description="Tabs Side Margin" type="length" default="30px" min="0" max="100px" value="30px"/>
@@ -385,11 +385,17 @@ h2.date-header {
   margin: 0 0 $(post.margin.bottom) 0;
 }
 
-h3.post-title, .comments h4 {
+h3.post-title,h3.post-title a, .comments h4 {
   font: $(post.title.font);
+  color: #343434;
   margin: .75em 0 0;
 }
 
+h3.post-title a:hover {
+  font: $(post.title.font);
+  color: #6A8372;
+  margin: .75em 0 0;
+}
 .post-body {
   font-size: 110%;
   line-height: 1.4;
@@ -543,7 +549,12 @@ body.mobile  {
   margin: 0 -10px;
 }
 
-.mobile h3.post-title {
+.mobile h3.post-title, .mobile h3.post-title a {
+  color: #343434;
+  margin: 0;
+}
+.mobile h3.post-title a:hover {
+  color: #6A8372;
   margin: 0;
 }
 
@@ -1023,7 +1034,7 @@ head.appendChild(script);
   <div id='navMenuleft'>
     <ul id='nav'>
 
-      <li><a href='https://summer-inequality.blogspot.com/'>Home</a>
+      <li><a href='https://summer-inequality.blogspot.com/' style='color:#6A8372;'>Home</a>
       </li>
       <li><a>Astrobiology</a>
         <ul> 
@@ -1156,7 +1167,7 @@ head.appendChild(script);
         <div class='column-center-outer'>
         <div class='column-center-inner'>
           <b:section class='main' id='main' name='Main' showaddelement='no'>
-            <b:widget id='Blog1' locked='false' title='網誌文章' type='Blog'>
+            <b:widget id='Blog1' locked='false' title='網誌文章' type='Blog' version='1'>
               <b:widget-settings>
                 <b:widget-setting name='showDateHeader'>true</b:widget-setting>
                 <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
@@ -1195,9 +1206,11 @@ head.appendChild(script);
         <b:if cond='data:post.isDateStart'>
           &lt;div class=&quot;date-outer&quot;&gt;
         </b:if>
-        <b:if cond='data:post.dateHeader'>
-          <h2 class='date-header'><span><data:post.dateHeader/></span></h2>
-        </b:if>
+        <!-- default dateHeader -->
+        <!-- <b:if cond='data:post.dateHeader'>  -->
+        <!--   <h2 class='date-header'><span><data:post.dateHeader/></span></h2>  -->
+        <!-- </b:if>  -->
+        <!-- default dateHeader (end) -->
         <b:if cond='data:post.isDateStart'>
           &lt;div class=&quot;date-posts&quot;&gt;
         </b:if>
@@ -1496,7 +1509,7 @@ head.appendChild(script);
   </div>
   <div class='clear'/>
 </b:includable>
-              <b:includable id='mobile-post' var='post'>
+              <b:includable id='mobile-post' var='post'>                
   <div class='date-outer'>
     <b:if cond='data:post.dateHeader'>
       <h2 class='date-header'><span><data:post.dateHeader/></span></h2>
@@ -1612,14 +1625,27 @@ head.appendChild(script);
   <div class='clear'/>
 </b:includable>
               <b:includable id='post' var='post'>
+  
   <div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
     <b:if cond='data:post.firstImageUrl'>
       <meta expr:content='data:post.firstImageUrl' itemprop='image_url'/>
     </b:if>
     <meta expr:content='data:blog.blogId' itemprop='blogId'/>
     <meta expr:content='data:post.id' itemprop='postId'/>
-
     <a expr:name='data:post.id'/>
+    
+    <!-- post-labels -->
+     <div class='post-footer-line post-footer-line-2'>
+      <span class='post-labels' style='display: block; background: transparent;'>
+        <b:if cond='data:top.showPostLabels and data:post.labels'>
+          <!--<data:postLabelsLabel/>-->
+          <b:loop values='data:post.labels' var='label'>
+            <a expr:href='data:label.url' rel='tag' style='font-size: 16px; color: #6A8372; font-weight:bold; font-family: NOTO SANS TC;'><data:label.name/></a><b:if cond='not data:label.isLast'>&#65372;</b:if>
+          </b:loop>
+        </b:if>
+      </span>
+     </div>
+    <!-- post-labels (end) -->
     <b:if cond='data:post.title'>
       <h3 class='post-title entry-title' itemprop='name'>
       <b:if cond='data:post.link or (data:post.url and data:blog.url != data:post.url)'>
@@ -1700,18 +1726,18 @@ head.appendChild(script);
       </div>
 
       </div>
-
-      <div class='post-footer-line post-footer-line-2'>
-      <span class='post-labels'>
-        <b:if cond='data:top.showPostLabels and data:post.labels'>
-          <data:postLabelsLabel/>
-          <b:loop values='data:post.labels' var='label'>
-            <a expr:href='data:label.url' rel='tag'><data:label.name/></a><b:if cond='not data:label.isLast'>,</b:if>
-          </b:loop>
-        </b:if>
-      </span>
-      </div>
-
+	  <!-- default post-lables -->
+     <!-- <div class='post-footer-line post-footer-line-2'> -->
+     <!-- <span class='post-labels'> -->
+     <!--   <b:if cond='data:top.showPostLabels and data:post.labels'> -->
+     <!--     <data:postLabelsLabel/> -->
+     <!--     <b:loop values='data:post.labels' var='label'> -->
+     <!--       <a expr:href='data:label.url' rel='tag'><data:label.name/></a><b:if cond='not data:label.isLast'>,</b:if> -->
+     <!--     </b:loop> -->
+     <!--   </b:if> -->
+     <!--  </span> -->
+     <!--  </div> -->
+	  <!-- default post-lables -->
       <div class='post-footer-line post-footer-line-3'>
       <span class='post-location'>
         <b:if cond='data:top.showLocation and data:post.location'>
@@ -2296,7 +2322,7 @@ code-prettify@master/loader/run_prettify.js&quot;&gt;&lt;/script&gt;
   </div>
 </b:includable>
   </b:widget>
-  <b:widget id='Feed1' locked='false' title='Latest articles' type='Feed'>
+  <b:widget id='Feed1' locked='false' title='' type='Feed' version='1'>
     <b:widget-settings>
       <b:widget-setting name='feedUrl'>https://summer-inequality.blogspot.com/feeds/posts/default</b:widget-setting>
       <b:widget-setting name='openLinksInNewWindow'>false</b:widget-setting>
@@ -2305,7 +2331,7 @@ code-prettify@master/loader/run_prettify.js&quot;&gt;&lt;/script&gt;
       <b:widget-setting name='showItemAuthor'>false</b:widget-setting>
     </b:widget-settings>
     <b:includable id='main'>
-    <h2><data:title/></h2>
+    <h2>Latest articles</h2>
     <div class='widget-content' expr:id='data:widget.instanceId + &quot;_feedItemListDisplay&quot;'>
       <span style='filter: alpha(25); opacity: 0.25;'>
         <a expr:href='data:feedUrl'><data:loadingMsg/></a>
