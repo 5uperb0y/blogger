@@ -11,7 +11,7 @@
 Blogger Template Style
 Name:     summerinequality
 Version:  1.0
-Designer: 5uperb0y
+Designer: 5uperb0yf
 URL:      https://summer-inequality.blogspot.com/
 ----------------------------------------------- */
 
@@ -546,12 +546,12 @@ body.mobile  {
 
 .mobile .date-header span {
   padding: 0.1em 10px;
-  margin: 0 -10px;
+  margin: 0 10px;
 }
 
 .mobile h3.post-title, .mobile h3.post-title a {
   color: #343434;
-  margin: 0;
+  margin: 0 -10px;
 }
 .mobile h3.post-title a:hover {
   color: #6A8372;
@@ -603,9 +603,17 @@ body.mobile  {
 #back-to-top{
 	display:scroll;
 	position:fixed;
-	margin: 10px 10px 10px 10px;
-	bottom:5px;
-	right:5px;
+	color:#9b9b9b;
+	bottom:15px;
+	right:15px;
+	font: 16px 'NOTO SANS CJK TC';
+}
+#back-to-top:hover{
+	display:scroll;
+	position:fixed;
+	color:#0084c0;
+	bottom:15px;
+	right:15px;
 	font: 16px 'NOTO SANS CJK TC';
 }
 /*----- Back to top (end) -----*/
@@ -1039,7 +1047,7 @@ head.appendChild(script);
       <li><a>Astrobiology</a>
         <ul> 
           <li><a href='https://summer-inequality.blogspot.com/search/label/Overview'>Overview</a></li>
-          <li><a href='https://summer-inequality.blogspot.com/search/label/Life%20in%20the%20universe'>What is life</a></li>
+          <li><a href='https://summer-inequality.blogspot.com/search/label/What%20is%20life'>What is life</a></li>
           <li><a href='https://summer-inequality.blogspot.com/search/label/Origin%20of%20life'>Origins of life</a></li>
           <li><a href='https://summer-inequality.blogspot.com/search/label/Life%20in%20the%20universe'>Life in the universe</a></li>
 
@@ -1206,11 +1214,6 @@ head.appendChild(script);
         <b:if cond='data:post.isDateStart'>
           &lt;div class=&quot;date-outer&quot;&gt;
         </b:if>
-        <!-- default dateHeader -->
-        <!-- <b:if cond='data:post.dateHeader'>  -->
-        <!--   <h2 class='date-header'><span><data:post.dateHeader/></span></h2>  -->
-        <!-- </b:if>  -->
-        <!-- default dateHeader (end) -->
         <b:if cond='data:post.isDateStart'>
           &lt;div class=&quot;date-posts&quot;&gt;
         </b:if>
@@ -1427,14 +1430,20 @@ head.appendChild(script);
   <!-- G+ comments, no longer available. The includable is retained for backwards-compatibility. -->
 </b:includable>
               <b:includable id='mobile-index-post' var='post'>
-  <div class='mobile-date-outer date-outer'>
-    <b:if cond='data:post.dateHeader'>
-      <div class='date-header'>
-        <span><data:post.dateHeader/></span>
-      </div>
-    </b:if>
+                
+<div class='mobile-date-outer date-outer'>
+    <!-- mobile-post-labels -->
+  <div class='mobile-post-outer' style='display:flex;'>
+        <b:if cond='data:top.showPostLabels and data:post.labels'>
+          <!--<data:postLabelsLabel/>-->
+          <b:loop values='data:post.labels' var='label'>
+            <a expr:href='data:label.url' rel='tag' style='font-size: 12px; color: #6A8372; font-weight:bold; font-family: NOTO SANS TC;'><data:label.name/></a><b:if cond='not data:label.isLast'>&#65372;</b:if>
+          </b:loop>
+        </b:if>
+    </div>
+    <!-- mobile-post-labels (end) --> 
 
-    <div class='mobile-post-outer'>
+          <div class='mobile-post-outer'>
       <a expr:href='data:post.url'>
         <h3 class='mobile-index-title entry-title' itemprop='name'>
           <data:post.title/>
@@ -1458,12 +1467,12 @@ head.appendChild(script);
 
         <div style='clear: both;'/>
       </a>
-
+    </div>
+    </div>
       <div class='mobile-index-comment'>
         <b:include cond='data:blog.pageType != &quot;static_page&quot;                          and data:post.allowComments                          and data:post.numComments != 0' data='post' name='comment_count_picker'/>
       </div>
-    </div>
-  </div>
+
 </b:includable>
               <b:includable id='mobile-main' var='top'>
     <!-- posts -->
@@ -1511,20 +1520,25 @@ head.appendChild(script);
 </b:includable>
               <b:includable id='mobile-post' var='post'>                
   <div class='date-outer'>
-    <b:if cond='data:post.dateHeader'>
-      <h2 class='date-header'><span><data:post.dateHeader/></span></h2>
-    </b:if>
     <div class='date-posts'>
       <div class='post-outer'>
-
         <div class='post hentry uncustomized-post-template' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
           <b:if cond='data:post.thumbnailUrl'>
             <meta expr:content='data:post.thumbnailUrl' itemprop='image_url'/>
           </b:if>
           <meta expr:content='data:blog.blogId' itemprop='blogId'/>
           <meta expr:content='data:post.id' itemprop='postId'/>
-
           <a expr:name='data:post.id'/>
+    <!-- mobile-post-labels -->
+      <span class='mobile-post-labels' style='display: float; background: transparent;'>
+        <b:if cond='data:top.showPostLabels and data:post.labels'>
+          <!--<data:postLabelsLabel/>-->
+          <b:loop values='data:post.labels' var='label'>
+            <a expr:href='data:label.url' rel='tag' style='font-size: 12px; color: #6A8372; font-weight:bold; font-family: NOTO SANS TC;'><data:label.name/></a><b:if cond='not data:label.isLast'>&#65372;</b:if>
+          </b:loop>
+        </b:if>
+      </span>
+    <!-- mobile-post-labels (end) --> 
           <b:if cond='data:post.title'>
             <h3 class='post-title entry-title' itemprop='name'>
               <b:if cond='data:post.link'>
@@ -1724,20 +1738,7 @@ head.appendChild(script);
       <div class='post-share-buttons goog-inline-block'>
         <b:include cond='data:post.sharePostUrl' data='post' name='shareButtons'/>
       </div>
-
       </div>
-	  <!-- default post-lables -->
-     <!-- <div class='post-footer-line post-footer-line-2'> -->
-     <!-- <span class='post-labels'> -->
-     <!--   <b:if cond='data:top.showPostLabels and data:post.labels'> -->
-     <!--     <data:postLabelsLabel/> -->
-     <!--     <b:loop values='data:post.labels' var='label'> -->
-     <!--       <a expr:href='data:label.url' rel='tag'><data:label.name/></a><b:if cond='not data:label.isLast'>,</b:if> -->
-     <!--     </b:loop> -->
-     <!--   </b:if> -->
-     <!--  </span> -->
-     <!--  </div> -->
-	  <!-- default post-lables -->
       <div class='post-footer-line post-footer-line-3'>
       <span class='post-location'>
         <b:if cond='data:top.showLocation and data:post.location'>
@@ -2091,6 +2092,24 @@ head.appendChild(script);
       </macro:include>
       <!-- outside of the include in order to lock Attribution widget -->
       <b:section class='foot' id='footer-3' name='Footer' showaddelement='no'>
+        <b:widget id='HTML6' locked='false' title='' type='HTML'>
+          <b:widget-settings>
+            <b:widget-setting name='content'>&lt;!-- call javascript --&gt;
+&lt;script type=&#39;text/javascript&#39;&gt;&lt;/script&gt;
+&lt;!-- call javascript (end) --&gt;</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+        </b:widget>
         <b:widget id='HTML4' locked='false' title='' type='HTML'>
           <b:widget-settings>
             <b:widget-setting name='content'>&lt;!-- Global site tag (gtag.js) - Google Analytics --&gt;
@@ -2228,11 +2247,7 @@ code-prettify@master/loader/run_prettify.js&quot;&gt;&lt;/script&gt;
       }, 10);
   </script>
 <!-- back to top -->
-  <a data-behavior='TopLink' href='#' id='back-to-top'>
-    <svg aria-hidden='true' class='icon--triangle'>
-      <use xlink:href='#icon--triangle'/>
-    </svg>Back to top
-  </a>
+  <a data-behavior='TopLink' href='#' id='back-to-top'>Back to top</a>
 <!-- back to top--> 
 </body>
 
@@ -2443,6 +2458,32 @@ code-prettify@master/loader/run_prettify.js&quot;&gt;&lt;/script&gt;
       </b:if>
     </span>
   </a>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML5' locked='false' title='Links' type='HTML'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>&lt;div id=&quot;link-list&quot;&gt;                                                               
+  &lt;p id = &quot;links1&quot; href=&quot;javascript:&quot; onclick=&quot;hide1.style.display=hide1.style.display==&#39;none&#39;?&#39;&#39;:&#39;none&#39;;getElementById(&#39;links1&#39;).textContent=hide1.style.display==&#39;none&#39;?&#39;&#65291;Creator&#39;:&#39;&#65293;Creator&#39;&quot; style=&quot;color:#9b9b9b&quot;&gt;&#65291;Creator&lt;/p&gt;
+      &lt;ul id=&quot;hide1&quot; style=&quot;display:none;list-style:none;&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/channel/UCp2NPngTFj4Nbz7j9ohsuEg/featured&quot;&gt;堅乘五&#65306;三峽堅果專賣&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://open.spotify.com/show/4vL801ReeWBkhNCUOBcobx&quot;&gt;創業鬼故事&#65288;podcast&#65289;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://www.facebook.com/EntrepreneurGhostStory/&quot;&gt;創業鬼故事&#65288;fan page&#65289;&lt;/a&gt;&lt;/li&gt;
+	    &lt;/ul&gt;
+   &lt;p id = &quot;links2&quot; href=&quot;javascript:&quot; onclick=&quot;hide2.style.display=hide2.style.display==&#39;none&#39;?&#39;&#39;:&#39;none&#39;;getElementById(&#39;links2&#39;).textContent=hide2.style.display==&#39;none&#39;?&#39;&#65291;Science&#39;:&#39;&#65293;Science&#39;&quot; style=&quot;color:#9b9b9b&quot;&gt;&#65291;Science&lt;/p&gt;
+      &lt;ul id=&quot;hide2&quot; style=&quot;display:none;list-style:none;&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;https://www.facebook.com/3minBioPhysics/&quot;&gt;三分鐘生物物理&lt;/a&gt;&lt;/li&gt;
+	    &lt;/ul&gt;&lt;/div&gt;</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
 </b:includable>
   </b:widget>
   <b:widget id='Text1' locked='false' title='About this blog' type='Text'>
